@@ -11,8 +11,8 @@ namespace CallCenterSkills.Models
     {
         public string speaker { get; set; }
         public string text { get; set; }
-        public long offset { get; set; }
-        public long duration { get; set; }
+        public string offset { get; set; }
+        public string duration { get; set; }
         public float offset_in_seconds { get; set; }
         public float duration_in_seconds { get; set; }
         public float sentiment { get; set; }

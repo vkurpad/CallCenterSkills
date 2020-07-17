@@ -155,8 +155,15 @@ namespace CallCenterSkills
             WebApiSkillResponse response = WebApiSkillHelpers.ProcessRequestRecords(skillName, requestRecords,
             (inRecord, outRecord) =>
             {
+                string rec = inRecord.Data["conversation"].ToString();
                 Conversation[] turns = JsonConvert.DeserializeObject<Conversation[]>(inRecord.Data["conversation"].ToString());
                 List<Conversation> output = turns.ToList<Conversation>();
+                foreach(Conversation c in output)
+                {
+                    c.offset_in_seconds = c.offset_in_seconds / 10000000;
+                    c.duration_in_seconds = c.duration_in_seconds / 10000000;
+                }
+
                 if (output == null || output.All(x => x == null))
                 {
                     outRecord.Data["result"] = null;
